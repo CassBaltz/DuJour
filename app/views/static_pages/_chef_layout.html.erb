@@ -1,0 +1,21 @@
+<div class="row">
+	<div class="col-lg-6 text-center">
+      	<div class="thumbnail" id="chef_info">
+      			<%= image_tag meal_chef(@meal).bio_photo.url %>
+      		<div class="caption">
+        		<h4><%= meal_chef(@meal).name %></h4>
+        		<p id="click_info" style="color: grey"> click to open details </p>
+      		</div>
+      	</div>
+	</div>
+</div>
+
+
+<div class="row">
+	<div id="chef_details" class="col-lg-6" style="display: none">
+		<h3 class="text-center"><%= (meal_chef(@meal)).restaurants.first.name %></h3>
+		<p id="close_chef_details" class="text-center" style="border: 1px solid grey">close</p>
+	</div>
+</div>
+
+

@@ -1,0 +1,10 @@
+<h1>unset meals</h1>
+	<% if @meal_limit_not_set.empty? %>
+		<h3>no meals to set<h3>
+	<%else%>
+		<% @meal_limit_not_set.each do |meal| %>
+		<div class="row">
+			<h3><%= link_to meal.name, select_meal_path(meal), data: {:toggle => "modal", :target => "#show-this-meal", :remote => true} %> <%= formatted_date(meal.date)%></h3>
+		</div>
+	<% end %>
+<%end%>

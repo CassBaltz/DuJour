@@ -1,0 +1,15 @@
+<% provide(:title, "store signin") %>
+<h1>store sign in</h1>
+
+<div class="row">
+      <%= bootstrap_form_for(:store_session, url: store_sessions_path) do |f| %>
+
+      <%= f.email_field :email, label: "email" %>
+
+      <%= f.password_field :password, label: "password" %>
+
+      <%= f.submit "Sign in", class: "btn btn-large btn-primary" %>
+    <% end %>
+  </div>
+</div>
+

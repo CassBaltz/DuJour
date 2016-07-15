@@ -1,0 +1,19 @@
+$(document).ready(function(){
+  $("#click_info").click(function(){
+    $("#chef_details").show();
+    $("#click_info").hide();
+  });
+});
+
+$(document).ready(function(){
+  $("#close_chef_details").click(function(){
+    $("#chef_details").hide();
+    $("#click_info").show();
+  });
+});
+
+$(document).ready(function(){
+  $('#click_info').css('cursor', 'pointer');
+  $('#close_chef_details').css('cursor', 'pointer');
+});
+

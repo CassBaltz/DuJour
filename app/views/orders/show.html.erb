@@ -1,0 +1,50 @@
+<% provide(:title, "order #{@order.id}") %>
+
+<% if current_user.present? %>
+
+<h3>thank you for your order. <%= @meal.name %> will be ready by 4:00 PM for pickup. Just give the store your name or email and a representative will pick your order. Thanks for choosing whatever we call this business. Below are details about your order.</h3>
+
+<table class="table" style="width:100%">
+  <tr>
+    <td>order number</td>
+    <td>store</td>
+    <td>order date</td> 
+    <td>order size</td>
+    <td>order time</td>
+    <td>stripe key</td>
+  </tr>
+  <tr>
+    <td><%= @order.id %></td>
+    <td><%= @store.name %></td>
+    <td><%= @meal.date %></td>
+    <td><%= @order_option.size %></td>
+    <td><%= @order.created_at %></td>
+    <td><%= @order.stripeToken %></td>
+  </tr>
+</table>
+
+<% else %>
+
+<h2> <%= @meal.name %> </h2>
+<table style="width:100%">
+  <tr>
+    <td>order number</td>
+    <td>customer name</td>
+    <td>order date</td> 
+    <td>order size</td>
+    <td>order time</td>
+    <td>stripe key</td>
+  </tr>
+  <tr>
+    <td><%= @order.id %></td>
+    <td><%= @customer.name %></td>
+    <td><%= @meal.date %></td>
+    <td><%= @order_option.size %></td>
+    <td><%= @order.created_at %></td>
+    <td><%= @order.stripeToken %></td>
+  </tr>
+</table>
+<h3> <%= link_to "past orders", store_past_orders_path, class: "btn btn-default" %>
+
+<% end %>
+

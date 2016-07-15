@@ -1,0 +1,47 @@
+<% provide(:title, "#{current_user.name.downcase} orders") %>
+
+<div class="row">
+<div class="col-md-3"></div>
+<div class="col-md-6 text-center">
+	<h1>my orders</h1>
+</div>
+<div class="col-md-3"></div>
+</div>
+
+<% if @my_orders.present? %>
+
+<div class="row">
+<div class="col-md-1"></div>
+
+<div class="col-md-10">
+	<table class="table">
+		<tr>
+			<th>meal</th>
+			<th>date</th>
+			<th>picture</th>
+			<th>chef</th>
+			<th>description</th>
+		</tr>
+
+<% @my_orders.each do |order| %>
+		<tr>
+			<td><%= link_to order.meal.name, meal_path(order.meal.id), data: {:toggle => "modal", :target => "#show-meal", :remote => true} %></td>
+			<td><%= order.meal.date %></td>
+			<td><%= image_tag order.meal.header_photo.picture.url, size: "200x100" %></td>
+			<td><%= order.meal.chef.name %></td>
+			<td><%= order.meal.description %></td>
+		</tr>
+<% end %>
+	</table>
+</div>
+
+<div class="col-md-1"></div>
+</div>
+
+<% else %>
+
+<h1 class='text-center'> you haven't ordered anything </h1>
+
+<% end %>
+
+<div id="show-meal" class="modal fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>

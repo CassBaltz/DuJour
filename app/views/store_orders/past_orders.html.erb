@@ -1,0 +1,51 @@
+<% provide(:title, "past orders") %>
+
+<h1>past orders</h1>
+
+<% if @all_past_orders.blank? %>
+
+<h3> you have no past orders </h3>
+
+<% else %>
+
+<%= bootstrap_form_tag url: '/store/past_orders', :method => "get" do %>
+  <%= text_field_tag :search_email, params[:search_email], placeholder: "search by customer email" %>
+  <%= submit_tag "Search", :name => nil %>
+<% end %>
+
+</br>
+
+<%= bootstrap_form_tag url: '/store/past_orders', :method => "get" do %>
+  <%= text_field_tag :search_name, params[:search_name], placeholder: "search by customer name" %>
+  <%= submit_tag "Search", :name => nil %>
+<% end %>
+
+<div class="row">
+	<div id="past_orders_list" class="col-xs-12">
+		<h4> all past orders </h4>
+		<div class="buffer"></div>
+		<table style="width:100%">
+			<tr>
+				<th>order number</th>
+				<th>meal name</th>
+				<th>date created </th>
+				<th>customer name</th>
+				<th>customer email</th>
+			</tr>
+		<% @all_past_orders.each do |order| %>
+			<tr>
+				<td><%= link_to "#{order.id}", order_path(order.id) %></td>
+				<td><%= Meal.find_by_id(order.meal_id).name %></td>
+				<td><%= formatted_date(order.created_at) %></td>
+				<td><%= User.find_by_id(order.user_id).name %></td>
+				<td><%= User.find_by_id(order.user_id).email %></td>
+			</tr>
+		<% end %>
+		</table>	
+	</div>
+</div>
+
+<h3><%= link_to "all past orders", store_past_orders_path %></h3>
+
+<% end %>
+

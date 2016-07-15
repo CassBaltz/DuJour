@@ -1,0 +1,46 @@
+<% provide(:title, 'stores') %>
+
+
+<div class="row">
+	<div class="col-lg-3"></div>
+		<div class="col-lg-6">
+			<h1 class="text-center">all participating stores</h1>
+		</div>
+	<div class="col-lg-3"></div>
+</div>
+
+<div class="buffer"></div>
+
+<div class="row">
+	<div class="col-lg-3"></div>
+		<div class="col-lg-6">
+			<h3 class="text-center">
+			<%= bootstrap_form_tag url: '/view_stores', method: :get, id: "search-form" do %>
+  			<%= text_field_tag :search_zip, params[:search_zip], placeholder: "Search By Zip" %>
+  			<%= submit_tag "Search", :name => nil %>
+  			<% end %>
+  			</h3>
+		</div>
+	<div class="col-lg-3"></div>
+</div>
+
+
+<% if user_signed_in? %>
+
+<div class="row">
+	<div class="col-xs-9"><%= render 'static_pages/map' %></div>
+	<div class="col-xs-3"><%= render 'static_pages/store_partial' %></div>
+</div>
+
+<% else %>
+
+<div class="row">
+	<div class="col-xs-2"></div>
+	<div class="col-xs-8"><%= render 'static_pages/map' %></div>
+	<div class="col-xs-2"></div>
+</div>
+
+<% end %>
+
+
+<div id="store-modal" class="modal fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>

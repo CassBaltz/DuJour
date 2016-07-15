@@ -1,0 +1,8 @@
+<% if @meal_active.nil? %>
+	<p> no meals are running </p>
+<% elsif @meal_available.nil? %>
+	<p> store not serving </p>
+<% else %>
+	<p> you can order </p>
+<% end %>
+

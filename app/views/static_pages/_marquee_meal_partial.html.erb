@@ -1,0 +1,23 @@
+	<div class="row">
+		<h1 class="text-center"><%= @meal.name%></h1>
+	</div>
+
+	<div class="row"></div>
+
+	<div class="row">
+		<%= render 'static_pages/meal_carousel' %>
+	</div>	
+
+	<div class="row">
+		<div class="col-lg-9"><%= render 'static_pages/meal_layout' %></div>
+		<div class="col-lg-3 my_store_partial"><%= render 'static_pages/store_partial' %></div>
+	</div>
+
+	<div class="row">
+		<div class="buffer"></div>
+	</div>
+
+	<div class="row">
+		<div><%= render 'static_pages/chef_layout' %></div>
+		<div><%= render 'static_pages/cooking_tools' %></div>
+	</div>

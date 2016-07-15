@@ -1,0 +1,41 @@
+<% provide(:title, "past meals") %>
+
+<div class="row">
+<div class="col-md-3"></div>
+<div class="col-md-6 text-center">
+	<h1>Past Meals</h1>
+</div>
+<div class="col-md-3"></div>
+</div>
+
+<div class="row">
+<div class="col-md-1"></div>
+
+<div class="col-md-10">
+	<table class="table">
+		<tr>
+			<th>meal</th>
+			<th>date</th>
+			<th>prep time</th>
+			<th>cook time</th>
+			<th>chef</th>
+			<th>description</th>
+		</tr>
+		
+<% @past_meals.each do |x| %>
+		<tr>
+			<td><%= link_to x.name, meal_path(x.id), data: {:toggle => "modal", :target => "#show-meal", :remote => true} %></td>
+			<td><%= x.date %></td>
+			<td><%= x.prep_time %></td>
+			<td><%= x.cook_time %></td>
+			<td><%= x.chef.name %></td>
+			<td><%= x.description %></td>
+		</tr>
+<% end %>
+	</table>
+</div>
+
+<div class="col-md-1"></div>
+</div>
+
+<div id="show-meal" class="modal fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>

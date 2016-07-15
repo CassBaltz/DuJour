@@ -1,0 +1,15 @@
+<% provide(:title, 'password recovery') %>
+
+<h1 class="text-center"> password recovery </h1>
+
+<div class="row">
+  <div class="col-lg-3"></div>
+  <div class="col-lg-6">
+    <%= bootstrap_form_tag url: "/password_recovery", method: :post do |f| %>
+
+      <%= f.email_field :email, label: "email" %>
+
+      <%= f.submit "submit email", class: "btn btn-large btn-primary" %>
+    <% end %>
+  </div>
+</div>

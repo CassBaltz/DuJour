@@ -1,0 +1,91 @@
+<div class="tab-border">
+	<ul class="nav nav-tabs">
+		<% @meal.order_options.each do |option| %>
+		<li><a href="#<%=option.size%>" data-toggle="tab"><%= option.size %> | $<%= option.price %></a>
+		<% end %>
+		</li>  
+	</ul>
+
+
+	<div class="tab-content">
+		<% @meal.order_options.each do |option| %>
+			<div class="tab-pane" id="<%= option.size %>">
+			<h3> prep. time: <%=@meal.prep_time %> | cook time: <%= @meal.cook_time %></h3>
+
+		</br>
+
+			<h3> <%= option.feeds %> meals @ $<%= (option.price.to_f / option.feeds.to_f).round(2) %> per meal </h3>	
+					<table class="table">
+						  <tr>	
+							<th>ingredient</th>
+							<th>quantity | measurement</th>
+						  </tr>
+
+				<% option.ingredients.each do |ingredient| %>		  
+
+						  <tr>
+						  	<td><%= ingredient.name %></td>
+						  	<td><%=	ingredient.measurement_quantity %> | <%= ingredient.measurement_type %> </td>
+						  </tr>
+					<% end %>
+					</table>
+				
+				<ol>
+					<% option.instructions.each do |instruction| %>
+						<li><%= instruction.content %></li>
+					<% end %>
+				</ol>
+				
+			<% if @meal_active.present? %>
+
+				<% if current_user.relationships.current_store.present? %>
+
+					<%= form_for(current_user.orders.build(meal_id: @meal.id, store_id: my_store(current_user).id, order_option_id: option.id)) do |f| %>
+					<%= f.hidden_field :meal_id %>
+					<%= f.hidden_field :store_id %>
+					<%= f.hidden_field :order_option_id %>
+					
+
+					<h4>$<%=option.price%>
+
+					<script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+			          src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+    					data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+    					data-name="MEALS"
+    					data-description="<%= @meal.name %> ($<%= option.price %>)"
+    					data-amount="<%= stripe_price(option) %>"
+    					data-email="<%= current_user.email %>"
+    					data-label="PURCHASE FROM <%=my_store(current_user).name%>">
+			        </script>
+
+					<% end %>   
+
+					 <div id="getting-started"></div>
+
+				<% else %>
+
+					<%= link_to "pick a store if you would like to purchase", close_stores_path, class: "btn btn-primary btn-sm", data: {:toggle => "modal", :target => "#store-modal-window", :remote => true} %> 
+
+				<% end %>
+
+			<% else %>
+
+				<p>past meal, can't order </p>
+
+			<% end %>
+			</div>
+		<% end %>
+	</div>
+</div>
+
+<script>
+$(window).load(function () {
+        $('.nav-tabs a:first').tab('show');
+    });
+$("#getting-started")
+   .countdown("<%= @meal.end_time.strftime('%Y/%m/%d %H:%M') %>", function(event) {
+      $(this).text(
+   event.strftime('%H:%M:%S to order while supplies still available')
+  );
+});
+</script>

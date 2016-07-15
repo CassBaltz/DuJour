@@ -1,0 +1,45 @@
+<% provide(:title, "pickup list") %>
+
+<h1>today's pickup list</h1>
+
+<% if @meal_active.blank? %>
+
+<h3> no orders running today </h3>
+
+<% elsif @meal_active.present? && @todays_orders.blank? %>
+
+<h3> nobody has ordered this meal yet </h3>
+
+<% else %>
+
+<div class="row"></div>
+
+<h4>ingredient pickup</h2>
+<div class="row">
+	<div class="col-md-10">
+
+		<table class="table">
+			<tr>
+				<% @ingredients.each do |ingredient| %>
+				<th><%= ingredient.name %></th>
+				<% end %>
+			</tr>
+
+			
+			<tr>
+			<% @ingredients.each do |this_ingredient| %>
+				<td>
+				<% sum = 0 %>
+				<% @todays_orders.each do |this_order| %>
+				<% x = Ingredient.where(order_option_id: this_order.order_option_id, name: this_ingredient.name).first.measurement_quantity %>
+				<% sum += x %>
+				<% end %>
+				<%= sum %> | <%= this_ingredient.measurement_type %>
+				</td>
+			<% end %>
+			</tr>
+		</table>
+
+	</div>
+</div>
+<% end %>

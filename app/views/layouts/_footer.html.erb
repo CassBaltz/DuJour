@@ -1,0 +1,19 @@
+<div class="row spacer"></div>
+<br>
+<div class="row link_class">
+	<div id="footer" class="col-xs-10">
+		<p class="text-left">
+			<%= link_to "help", help_path %> | <%= link_to "contact", contact_path %> | <%= link_to "privacy",privacy_path %>
+		</p>
+	</div>
+	
+<% unless store_signed_in? || user_signed_in? %>
+	<div id="footer" class="col-xs-2">
+		<p class="text-right">
+			<%= link_to "store sign in", store_signin_path %> 
+		</p>
+	</div>
+<% end %>
+
+</div>
+

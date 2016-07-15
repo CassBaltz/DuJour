@@ -1,0 +1,9 @@
+<h1>Reset Password</h1>
+
+<%= bootstrap_form_for(@user, url: password_recovery_path(params[:id]), method: :put) do |f| %>
+  <%= f.password_field :password, label: "new password" %>
+
+  <%= f.password_field :password_confirmation, label: "new password confirmation" %>
+ <div class="buffer"></div>
+  <%= f.submit "update password", class: "btn btn-large btn-primary", id: "button" %>
+<% end %>

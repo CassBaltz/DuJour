@@ -1,0 +1,88 @@
+<% provide(:title, "current orders") %>
+
+<h1>today's orders</h1>
+
+<% if @meal_active.blank? %>
+
+<h3> no orders running today </h3>
+
+<% elsif @meal_active.present? && @todays_orders.blank? %>
+
+<h3> nobody has ordered this meal yet </h3>
+
+<% else %>
+
+<div class="row"></div>
+
+<h4>incomplete orders </h2>
+<div class="row">
+	<div class="col-md-10">
+
+		<table class="table">
+			<tr>
+				<th>order number</th>
+				<th>name</th>
+				<th>time</th>
+				<th>quantity</th>
+				<th>ready for pickup?</th>
+			</tr>
+
+			<% @not_ready_for_pickup.each do |order| %>
+
+			<tr>
+
+				<td><%= order.id %>
+				<td><%= User.find_by_id(order.user_id).name %></td>
+				<td><%= order.created_at %></td>
+				<td><%= OrderOption.find_by_id(order.order_option_id).size %></td>
+				<td>
+					<%= bootstrap_form_for(order, url: store_ready_for_pickup_path(order.id)) do |f| %>
+
+      				<%= f.hidden_field :ready_for_pickup, value: true %>
+     
+      				<%= f.submit "send email", class: "btn btn-large btn-primary", id: "button" %>
+					<% end %> 
+				</td>
+
+			</tr>
+
+			<% end %>
+		</table>
+
+	</div>
+</div>
+
+<h4>made orders </h2>
+<div class="row">
+	<div class="col-md-10">
+
+		<table class="table">
+			<tr>
+				<th>order number</th>
+				<th>name</th>
+				<th>time</th>
+				<th>quantity</th>
+				<th>ready for pickup?</th>
+			</tr>
+
+			<% @ready_for_pickup.each do |order| %>
+
+			<tr>
+				<td><%= order.id %>
+				<td><%= User.find_by_id(order.user_id).name %></td>
+				<td><%= order.created_at %></td>
+				<td><%= OrderOption.find_by_id(order.order_option_id).size %></td>
+				<td>yes</td>
+			</tr>
+
+			<% end %>
+		</table>
+
+	</div>
+</div>
+
+<%= link_to "see pickup list", store_pickup_list_path, class: "btn btn-large btn-primary" %>
+
+<% end %>
+
+

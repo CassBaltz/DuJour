@@ -1,0 +1,2 @@
+$("#store-modal-window").modal('hide');
+$(".my_store_partial").html("<%= escape_javascript(render('static_pages/store_partial', locals: {meal_active: @meal_active, meal_available: @meal_available})) %>");

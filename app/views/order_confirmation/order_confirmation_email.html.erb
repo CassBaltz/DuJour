@@ -1,0 +1,15 @@
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+  <h1><%= Meal.find_by_id(@order.meal_id).name %> order received!</h1>
+
+    <h3>Thanks for the order, <%= User.find_by_id(@order.user_id).name %></h1>
+    <p>
+      Your purchase has been receieved and you will be notified by an email when all your meal is ready. It should be ready by 3:30 EST
+      <br>
+    </p>
+    <p>Have a great day!</p>
+  </body>
+</html>

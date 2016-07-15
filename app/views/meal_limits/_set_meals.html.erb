@@ -1,0 +1,11 @@
+<h1>set meals</h1>
+<% if @meal_limit_set.empty? %>
+	<h3>no meals set<h3>
+<% else %>
+	<% @meal_limit_set.each do |meal| %> 
+		<p><%= meal.name %> <%= formatted_date(meal.date) %> <%= bootstrap_form_for(current_store.meal_limits.find_by(meal_id: meal.id),
+             html: { method: :delete }, remote: true) do |f| %>
+  		<%= f.submit "Cancel", class: "btn btn-small" %></p>
+		<% end %>
+	<% end %>
+<% end %>

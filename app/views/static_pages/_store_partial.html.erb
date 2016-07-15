@@ -1,0 +1,43 @@
+   <% unless current_user.relationships.blank? %>       
+      <div class="well">
+        <h4>your current store is...</h4>
+        <p><%= my_store(current_user).name %></p>
+        <p><%= my_store(current_user).street %></p>
+        <p><%= my_store(current_user).city%> <%= my_store(current_user).state.upcase %> <%= my_store(current_user).zip %></p>
+        
+        <% unless current_page?(controller: 'static_pages', action: 'stores_index') %> 
+
+        <div>
+            <%= link_to 'change', close_stores_url, class: "btn btn-primary btn-sm", data: {:toggle => "modal", :target => "#store-modal-window", :remote => true} %>
+        </div>
+
+        <% else %>
+
+         <h3> click the map to pick a store </h3>
+
+        <% end %>
+
+          <% if @meal_active.nil? %>
+            <p> no meals are running </p>
+          <% elsif @meal_available.nil? %>
+            <p> store not serving </p>
+          <% else %>
+            <p> you can order </p>
+          <% end %>
+
+
+      </div>  
+	
+  <% else %>
+  	  <% unless current_page?(controller: 'static_pages', action: 'stores_index') %> 
+
+       <%= link_to 'find stores nearby', close_stores_url, class: "btn btn-primary btn-lg", data: {:toggle => "modal", :target => "#store-modal-window", :remote => true} %>
+
+      <% else %>
+
+     <h3> click the map to pick a store </h3>
+     
+
+      <% end %>
+	<% end %>
+

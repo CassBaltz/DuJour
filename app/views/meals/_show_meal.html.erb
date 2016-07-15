@@ -1,0 +1,56 @@
+<div class="col-lg-1"></div>
+  
+  <div class="modal-dialog-lg col-lg-10">
+  <div class="modal-content">
+    
+        
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h1 class="modal-title text-center" id="myModalLabel"><%=@meal.name%></h1>
+        </div>
+
+        <div class="modal-body">
+        
+        <div class="buffer"></div>
+
+		<div class="row">
+			<div class="col-xs-2"></div>
+				<div class="col-xs-8"><%= image_tag header_photo(@meal).picture.url, class: "bg-image img-rounded" %></div>
+			<div class="col-xs-2"></div>
+		</div>
+		</br>
+		<p class="text-center"><%= header_photo(@meal).name %></p>
+		<br>
+		<div class="row">
+			<div class="col-xs-6 text-center">
+				<h4> prep time: <%= @meal.prep_time %> </h4>
+			</div>
+			<div class="col-xs-6 text-center">
+				<h4> cook time: <%= @meal.cook_time %> </h4>
+			</div>
+		</div>
+		
+		<ul>
+			<h3>ingredients</h3>
+				<% @order_option.ingredients.each do |ingredient| %>
+					<li><%= ingredient.name %> <%= ingredient.measurement_quantity %> <%= ingredient.measurement_type %></li>
+				<% end %>
+		</ul>
+
+		<ol>
+			<h3>instructions</h3>
+				<% @order_option.instructions.each do |instruction| %>
+					<li><%= instruction.content %></li>
+				<% end %>
+			</ol>
+		
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+        
+    </div>
+  </div>
+
+<div class="col-lg-1"></div>

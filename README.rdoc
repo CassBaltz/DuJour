@@ -1,0 +1,42 @@
+**********
+
+du-jour: A just in time preportioned ingredient meal system
+
+**********
+
+-- ABOUT --
+
+Ruby version: 2.0.0p195 (2013-5-14) [i386-mingw32]
+
+Rails version: 4.0.4
+
+PostgreSQL database version: 9.3
+
+Hosted on Heroku
+
+Git version 1.9.5
+
+-- OVERVIEW --
+
+This is an application to allow grocery providers the ability to offer preprotioned meals to their customers through the leveraging of a web application. The purpose of the software is to facilitate orders, money transactions, and marketing for the participating grocery providers.
+
+Customers sign up for the program using a name, email, zip, password, and password confirmation. They will then be emailed the day a 'meal is running'. 'Meal is running' can be defined as a day when the option to order preportioned ingredients is available. Meals will not be running every day to start. A meal is created by notable chefs throughout the country to use cooking techniques, instructions, and tools accessible to
+the novice cook while choosing ingredients available at most grocery providers.
+
+Customers can choose from meal sizes of small, medium, and large. These options offer two servings, four servings, and six servings respectively.
+
+Meals must be ordered by 1:00 PM the day they run. After all orders are collected, each participating grocery provider will go and pick the ingredients for its particular orders. The ingredients will then be preportioned based on each order option and then stored in a refrigerator.
+
+The customer can then stop by the store after 4:00 PM the same day and pick-up his or her order.
+
+Meals are offered by the marketing team at SCARBOROUGH FAIR and consulting chefs. Grocery providers have the option to opt-in to each meal, as well as choose the number of servings they are willing to provide for a particular meal. If their particular store is out of an important ingredient, they do not have to participate in the meal. However, stores will be notified of upcoming meals and the ingredient list weeks in advance of each particular meal running.
+
+Payment from customers is collected through the order process using Stripe integration. Payment to grocery stores will be remitted by du-jour days after collection.
+
+-- AUTHOR --
+
+Cass Baltz
+
+-- CONTACT --
+
+cass.baltz@gmail.com

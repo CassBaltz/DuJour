@@ -1,0 +1,4 @@
+$("#set_meals").html("<%= escape_javascript(render('meal_limits/set_meals', locals: { meal_limit_set: @meal_limit_set } )) %>");
+$("#unset_meals").html("<%= escape_javascript(render('meal_limits/unset_meals', locals: { meal_limit_not_set: @meal_limit_not_set })) %>");
+
+

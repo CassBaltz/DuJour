@@ -1,0 +1,41 @@
+<div id="carousel-active_meal" class="carousel" data-ride="carousel" >
+  
+  <ol class="carousel-indicators">
+    <li data-target="#carousel-active_meal" data-slide-to="0" class="active"></li>
+    
+    <% @meal_photos.each_with_index do |photo, index| %>
+    <li data-target="#carousel-active_meal" data-slide-to=<%= index + 1 %>></li>
+    <% end %>
+  </ol>
+
+  <div class="carousel-inner">
+    <div class="item active">
+      <%= image_tag @meal.header_photo.picture.url %>
+      <div class="carousel-caption">
+        <h3><%= @meal.header_photo.name %>
+      </div>
+    </div>
+  
+  <% @meal_photos.each do |photo| %>
+    <div class="item">
+      <%= image_tag photo.picture.url %>
+      <div class="carousel-caption">
+      <h3><%= photo.name %> </h3>
+      </div>
+    </div>
+  <% end %>
+  </div>
+
+  <a class="left carousel-control" href="#carousel-active_meal" role="button" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left"></span>
+  </a>
+  <a class="right carousel-control" href="#carousel-active_meal" role="button" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right"></span>
+  </a>
+
+<script>
+$('.carousel').carousel({
+    pause: true,
+    interval: false
+});
+</script>

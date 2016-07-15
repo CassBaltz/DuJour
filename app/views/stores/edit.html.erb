@@ -1,0 +1,32 @@
+<% provide(:title, "Edit Store Profile") %>
+<h1>Update your store's profile</h1>
+
+<div class="row">
+  <div class="col-xs-3"></div>
+  <div class="col-xs-6">
+    <%= bootstrap_form_for(@store) do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+
+      <%= f.text_field :name, label: "store name" %>
+
+      <%= f.text_field :street, label: "street" %>
+
+      <%= f.text_field :street_alt, label: "alternate street" %>
+
+      <%= f.text_field :city, label: "city" %>
+
+      <%= f.text_field :state, label: "state" %>
+
+      <%= f.text_field :zip, label: "zip" %>
+
+      <%= f.text_field :email, label: "email" %>
+
+      <%= f.password_field :password, label: "password" %>
+
+      <%= f.password_field :password_confirmation, label: "password confirmation" %>
+
+      <p class="text-center"><%= f.submit "Update Account", class: "btn btn-large btn-primary" %></p>
+    <% end %>
+  </div>
+  <div class="col-xs-3"></div>
+</div>
